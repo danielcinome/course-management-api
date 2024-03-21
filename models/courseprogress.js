@@ -1,7 +1,7 @@
-'use strict';
+'use strict'
 const {
   Model
-} = require('sequelize');
+} = require('sequelize')
 module.exports = (sequelize, DataTypes) => {
   class CourseProgress extends Model {
     /**
@@ -9,8 +9,14 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate(models) {
+    static associate (models) {
       // define association here
+      CourseProgress.belongsTo(models.User, {
+        foreignKey: 'id'
+      })
+      CourseProgress.belongsTo(models.Course, {
+        foreignKey: 'id'
+      })
     }
   }
   CourseProgress.init({
@@ -20,15 +26,8 @@ module.exports = (sequelize, DataTypes) => {
     aprovalDate: DataTypes.DATE
   }, {
     sequelize,
-    modelName: 'CourseProgress',
-  });
-  CourseProgress.associate = (models) => {
-    CourseProgress.belongsTo(models.User, {
-      foreignKey: 'userId',
-    });
-    CourseProgress.belongsTo(models.Course, {
-      foreignKey: 'courseID',
-    });
-  }
-  return CourseProgress;
-};
+    modelName: 'CourseProgress'
+  })
+
+  return CourseProgress
+}

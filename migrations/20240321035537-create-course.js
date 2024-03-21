@@ -1,9 +1,10 @@
-'use strict';
+'use strict'
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  async up(queryInterface, Sequelize) {
+  async up (queryInterface, Sequelize) {
     await queryInterface.createTable('courses', {
-      uuid: {
+      id: {
+        allowNull: false,
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV4,
         primaryKey: true
@@ -19,14 +20,14 @@ module.exports = {
         type: Sequelize.TEXT,
         allowNull: false
       },
-      publication_date: {
+      publicationDate: {
         type: Sequelize.DATE,
-        allowNull: false,
+        allowNull: false
       },
-      video_link: {
+      videoLink: {
         type: Sequelize.STRING
       },
-      deleted_at: {
+      deletedAt: {
         type: Sequelize.DATE
       },
       createdAt: {
@@ -37,9 +38,9 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       }
-    });
+    })
   },
-  async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('courses');
+  async down (queryInterface, Sequelize) {
+    await queryInterface.dropTable('courses')
   }
-};
+}

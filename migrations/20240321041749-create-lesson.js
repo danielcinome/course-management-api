@@ -3,7 +3,8 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('lessons', {
-      uuid: {
+      id: {
+        allowNull: false,
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV4,
         primaryKey: true
@@ -13,7 +14,7 @@ module.exports = {
         onDelete: 'CASCADE',
         references: {
           model: 'courses',
-          key: 'uuid',
+          key: 'id',
           as: 'courseId'
         }
       },

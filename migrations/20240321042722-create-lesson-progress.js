@@ -3,7 +3,8 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('lessonProgresses', {
-      uuid: {
+      id: {
+        allowNull: false,
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV4,
         primaryKey: true
@@ -12,7 +13,7 @@ module.exports = {
         type: Sequelize.UUID,
         references: {
           model: 'users',
-          key: 'uuid',
+          key: 'id',
           as: 'userId'
         }
       },
@@ -20,7 +21,7 @@ module.exports = {
         type: Sequelize.UUID,
         references: {
           model: 'lessons',
-          key: 'uuid',
+          key: 'id',
           as: 'lessonId'
         }
       },

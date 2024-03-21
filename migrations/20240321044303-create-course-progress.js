@@ -1,7 +1,7 @@
-'use strict';
+'use strict'
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  async up(queryInterface, Sequelize) {
+  async up (queryInterface, Sequelize) {
     await queryInterface.createTable('courseProgresses', {
       id: {
         allowNull: false,
@@ -13,20 +13,18 @@ module.exports = {
         type: Sequelize.UUID,
         references: {
           model: 'users',
-          key: 'id',
-          as: 'userId'
+          key: 'id'
         }
       },
       courseID: {
         type: Sequelize.UUID,
         references: {
           model: 'courses',
-          key: 'id',
-          as: 'courseId'
+          key: 'id'
         }
       },
       state: {
-        type: Sequelize.ENUM('pending' ,'progress', 'finished'),
+        type: Sequelize.ENUM('pending', 'progress', 'finished'),
         defaultValue: 'pending'
       },
       aprovalDate: {
@@ -40,9 +38,9 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       }
-    });
+    })
   },
-  async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('courseProgresses');
+  async down (queryInterface, Sequelize) {
+    await queryInterface.dropTable('courseProgresses')
   }
-};
+}

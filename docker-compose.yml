@@ -1,0 +1,27 @@
+version: '3'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./app:/app
+    depends_on:
+      - db
+    environment:
+      DB_USER: 'root'
+      DB_PASSWORD: ''
+      DB_NAME: 'mysqltest'
+      DB_HOST: '127.0.0.1'
+  db:
+    image: mysql:8.3.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ''
+      MYSQL_DATABASE: 'mysqltest'
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./data:/var/lib/mysql
